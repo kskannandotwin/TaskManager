@@ -6,19 +6,19 @@
 </nav>
 
 <h5>Dashboard</h5>
-
+<h6>{{ Today | date: 'd/M/y' }}</h6>
 <div class="row">
     <div class="col-lg-3 pb-3" style="background-color: #e9e6e6">
         <div class="row">
             <div class="col-11 text-white text-center mx-auto rounded pt-2 pb-2 font-weight-bold"
                 style="background-color: #a39e9e; font-family: 'Arial Narrow Bold', sans-serif">
-                {{ Designation }}
+                {{ Designation | uppercase }}
             </div>
             <div class="col-12 text-center mt-2">
                 <img src="assets/user.png" width="120px" alt="User image">
             </div>
             <div class="col-12 text-center pt-2 pb-2 font-weight-bold" style="font-family: Tahoma">
-                {{ Username }}
+                {{ Username | lowercase }}
             </div>
             <div class="col-12 text-center pt-2 pb-2" style="font-family: Arial">
                 TEAM SUMMARY
@@ -40,7 +40,7 @@
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         UPCOMING PROJECTS<span class="badge badge-secondary badge-pill" style="font-size: 13px">{{
-                            UpComingProjects }}</span>
+                            UpComingProjects | percent }}</span>
                     </li>
                 </ul>
             </div>
@@ -50,9 +50,10 @@
             <div class="col-12">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item" *ngFor="let client of Clients">
-                        {{ client }}
+                        {{ client | slice: 0: 10 }}
                     </li>
                 </ul>
+                {{ TeamMembersSummary | json }}
             </div>
         </div>
     </div>
@@ -93,15 +94,15 @@
                 <table class="table table-borderless">
                     <tr>
                         <td>Project Cost</td>
-                        <td>${{ ProjectCost }}</td>
+                        <td>{{ ProjectCost | currency: 'INR' }}</td>
                     </tr>
                     <tr>
                         <td>Current Expenditure</td>
-                        <td>${{ CurrentExpenditure }}</td>
+                        <td>{{ CurrentExpenditure | currency: 'INR' }}</td>
                     </tr>
                     <tr>
                         <td>Available Funds</td>
-                        <td>${{ AvailableFunds }}</td>
+                        <td>{{ AvailableFunds | currency: 'INR' }}</td>
                     </tr>
                 </table>
             </div>
@@ -140,58 +141,58 @@
             <div class="col-lg-12 pt-2">
                 <div class="accordion" id="accordion1">
                     <div class="card" *ngFor="let teamMembersGroup of TeamMembers; let i = index">
-                        
-                            <div class="card-header bg-secondary" id="card1">
-                                <h2 class="mb-0">
-                                    <button class="btn btn-link text-white" type="button" data-toggle="collapse"
-                                        [attr.data-target]="'#cardbody' + i">
-                                        {{ teamMembersGroup.Region }}
-                                    </button>
-                                </h2>
-                            </div>
-                            <div [id]="'cardbody' + i" class="collapse" data-parent="#accordion1"
-                                [ngClass]="(i == 0) ? 'show' : ''">
-                                <div class="card-body">
 
-                                    <div *ngIf="i == 0; then firstTemplate; else secondTemplate">
+                        <div class="card-header bg-secondary" id="card1">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link text-white" type="button" data-toggle="collapse"
+                                    [attr.data-target]="'#cardbody' + i">
+                                    {{ teamMembersGroup.Region }}
+                                </button>
+                            </h2>
+                        </div>
+                        <div [id]="'cardbody' + i" class="collapse" data-parent="#accordion1"
+                            [ngClass]="(i == 0) ? 'show' : ''">
+                            <div class="card-body">
 
-                                    </div>
+                                <div *ngIf="i == 0; then firstTemplate; else secondTemplate">
 
-                                    <ng-template #firstTemplate>
-                                        <div class="card" *ngFor="let member of teamMembersGroup.Members">
-                                            <div class="card-header bg-primary text-white">
-                                                #{{ member.ID }} {{ member.Name }} 
-                                            </div>
-                                            <div class="card-body">
-                                                {{ member.Status }}
-                                            </div>
-                                        </div>
-                                    </ng-template>
-
-                                    <ng-template #secondTemplate>
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>Name</th>
-                                                    <th>Status</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr *ngFor="let member of teamMembersGroup.Members">
-                                                    <td>{{ member.ID }}</td>
-                                                    <td [style.color]="(member.Status == 'Busy' ? 'red' : 'black')">{{
-                                                        member.Name }}</td>
-                                                    <td>{{ member.Status }}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </ng-template>
-
-                                    
                                 </div>
+
+                                <ng-template #firstTemplate>
+                                    <div class="card" *ngFor="let member of teamMembersGroup.Members">
+                                        <div class="card-header bg-primary text-white">
+                                            #{{ member.ID }} {{ member.Name }}
+                                        </div>
+                                        <div class="card-body">
+                                            {{ member.Status }}
+                                        </div>
+                                    </div>
+                                </ng-template>
+
+                                <ng-template #secondTemplate>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let member of teamMembersGroup.Members">
+                                                <td>{{ member.ID }}</td>
+                                                <td [style.color]="(member.Status == 'Busy' ? 'red' : 'black')">{{
+                                                    member.Name }}</td>
+                                                <td>{{ member.Status }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </ng-template>
+
+
                             </div>
-                        
+                        </div>
+
                     </div>
                 </div>
             </div>
