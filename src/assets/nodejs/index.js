@@ -98,3 +98,21 @@ app.get("/api/projects/search/:searchby/:searchtext?", function (req, res) {
   res.send(helpers.toCamel(projects));
 });
 
+//POST /authenticate
+app.post("/authenticate", function (req, res) {
+  console.log(req.method, req.url);
+  users = JSON.parse(fs.readFileSync(jsonfile, "utf8")).users;
+  user = users.find(
+    (user) =>
+      user.UserName == req.body.UserName && user.Password == req.body.Password
+  );
+  if (user) {
+    console.log("Response: ", user);
+    res.send(helpers.toCamel({ ...user, password: "" }));
+  }
+  else {
+    res.status(400);
+    res.send({ message: "Username or password is incorrect" });
+  }
+});
+
