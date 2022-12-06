@@ -76,4 +76,26 @@ export class ProjectsComponent {
       }
     );
   }
+
+  onDeleteClick(event: any, index: number) {
+    this.deleteIndex = index;
+    this.deleteProject.projectID = this.projects[index].projectID;
+    this.deleteProject.projectName = this.projects[index].projectName;
+    this.deleteProject.dateOfStart = this.projects[index].dateOfStart;
+    this.deleteProject.teamSize = this.projects[index].teamSize;
+  }
+
+  onDeleteConfirmClick() {
+    this.projectsService.deleteProject(this.deleteProject.projectID).subscribe(
+      (response) => {
+        this.projects.splice(this.deleteIndex, 1);
+        this.deleteProject.projectID = null;
+        this.deleteProject.projectName = null;
+        this.deleteProject.teamSize = null;
+        this.deleteProject.dateOfStart = null;
+      },
+      (error) => {
+        console.log(error);
+      });
+  }
 }
