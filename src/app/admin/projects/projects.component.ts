@@ -15,6 +15,8 @@ export class ProjectsComponent {
   editIndex: any = null;
   deleteProject: Project = new Project();
   deleteIndex: any = null;
+  searchBy: string = 'ProjectName';
+  searchText: string = '';
 
   constructor(private projectsService: ProjectsService) {
 
@@ -97,5 +99,18 @@ export class ProjectsComponent {
       (error) => {
         console.log(error);
       });
+  }
+
+  onSearchClick() {
+    this.projectsService
+      .searchProjects(this.searchBy, this.searchText)
+      .subscribe(
+        (response: Project[]) => {
+          this.projects = response;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 }

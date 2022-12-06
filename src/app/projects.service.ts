@@ -27,4 +27,11 @@ export class ProjectsService {
   deleteProject(ProjectID: number): Observable<string> {
     return this.httpClient.delete<string>(this.urlPrefix + "/api/projects?ProjectID=" + ProjectID);
   }
+
+  searchProjects(searchBy: string, searchText: string): Observable<Project[]> {
+    return this.httpClient.get<Project[]>(
+      this.urlPrefix + '/api/projects/search/' + searchBy + '/' + searchText,
+      { responseType: 'json' }
+    );
+  }
 }

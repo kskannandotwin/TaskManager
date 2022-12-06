@@ -90,10 +90,11 @@ app.get("/api/projects/search/:searchby/:searchtext?", function (req, res) {
   req.params.searchby = helpers.toCamelCase(req.params.searchby || "");
   console.log(req.params);
   projects = projects.filter((project) => {
-    value = (project[req.params.searchby] || "").toUpperCase();
+    value = String(project[req.params.searchby] || "").toUpperCase();
     return value.indexOf(req.params.searchtext) >= 0;
   });
 
   console.log("Response: ", projects);
   res.send(helpers.toCamel(projects));
 });
+
