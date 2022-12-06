@@ -19,4 +19,8 @@ export class ProjectsService {
   insertProject(newProject: Project): Observable<Project> {
     return this.httpClient.post<Project>(this.urlPrefix + "/api/projects", newProject);
   }
+
+  updateProject(existingProject: Project): Observable<Project> {
+    return this.httpClient.put<Project>(this.urlPrefix + "/api/projects", existingProject, { responseType: "json" });
+  }
 }
