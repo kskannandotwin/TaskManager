@@ -1,0 +1,25 @@
+{
+  "projects": [
+    {
+      "projectID": 1,
+      "projectName": "Project 1",
+      "dateOfStart": "2019-07-12",
+      "teamSize": 1000,
+      "id": 1
+    },
+    {
+      "id": 2,
+      "projectID": 2,
+      "projectName": "Project 2",
+      "dateOfStart": "2022-03-05",
+      "teamSize": 15
+    },
+    {
+      "projectID": 3,
+      "projectName": "Sample Project",
+      "dateOfStart": "2022-12-06",
+      "teamSize": 14,
+      "id": 3
+    }
+  ]
+}

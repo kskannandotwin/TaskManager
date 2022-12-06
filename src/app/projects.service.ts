@@ -9,13 +9,15 @@ import { map } from 'rxjs/operators';
 })
 export class ProjectsService {
 
-  urlPrefix: string = "http://localhost:9090";
+  // urlPrefix: string = "http://localhost:9090"; // node js url
+  urlPrefix: string = "http://localhost:3000"; // json-server url
 
   constructor(private httpClient: HttpClient) { }
 
   getAllProjects(): Observable<Project[]> {
     return this.httpClient
-      .get<Project[]>(this.urlPrefix + '/api/projects', { responseType: 'json' })
+      // .get<Project[]>(this.urlPrefix + '/api/projects', { responseType: 'json' }) // for node js
+      .get<Project[]>(this.urlPrefix + '/projects', { responseType: 'json' }) // for json-server
       .pipe(
         map((data: Project[]) => {
           for (let i = 0; i < data.length; i++) {
@@ -27,15 +29,18 @@ export class ProjectsService {
   }
 
   insertProject(newProject: Project): Observable<Project> {
-    return this.httpClient.post<Project>(this.urlPrefix + "/api/projects", newProject, { responseType: "json" });
+    // return this.httpClient.post<Project>(this.urlPrefix + "/api/projects", newProject, { responseType: "json" }); // for node js
+    return this.httpClient.post<Project>(this.urlPrefix + "/projects", newProject, { responseType: "json" }); // for json-server
   }
 
   updateProject(existingProject: Project): Observable<Project> {
-    return this.httpClient.put<Project>(this.urlPrefix + "/api/projects", existingProject, { responseType: "json" });
+    // return this.httpClient.put<Project>(this.urlPrefix + "/api/projects", existingProject, { responseType: "json" }); // for node js
+    return this.httpClient.put<Project>(this.urlPrefix + "/projects" + existingProject.projectID, existingProject, { responseType: "json" }); // for json-server
   }
 
   deleteProject(ProjectID: number): Observable<string> {
-    return this.httpClient.delete<string>(this.urlPrefix + "/api/projects?ProjectID=" + ProjectID);
+    // return this.httpClient.delete<string>(this.urlPrefix + "/api/projects?ProjectID=" + ProjectID); // for node js
+    return this.httpClient.delete<string>(this.urlPrefix + "/projects/" + ProjectID); // for json-server
   }
 
   searchProjects(searchBy: string, searchText: string): Observable<Project[]> {
