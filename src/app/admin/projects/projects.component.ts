@@ -26,10 +26,6 @@ export class ProjectsComponent {
     this.projectsService.getAllProjects().subscribe(
       (response: Project[]) => {
         this.projects = response;
-      },
-      (error) => {
-        console.log(error);
-        alert('Authentication failed');
       }
     );
   }
