@@ -18,12 +18,14 @@ export class LoginService {
       .pipe(map(user => {
         if (user) {
           this.currentUserName = user.userName;
+          sessionStorage['currentUser'] = JSON.stringify(user);
         }
         return user;
       }));
   }
 
   public Logout() {
+    sessionStorage.removeItem('currentUser');
     this.currentUserName = null;
   }
 
