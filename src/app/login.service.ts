@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpBackend, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoginViewModel } from './login-view-model';
@@ -9,11 +9,14 @@ import { map } from 'rxjs/operators';
 })
 export class LoginService {
 
-  constructor(private httpClient: HttpClient) { }
+  private httpClient: HttpClient | null = null;
+
+  constructor(private httpBackend: HttpBackend) { }
 
   currentUserName: any = null;
 
   public Login(loginViewModel: LoginViewModel): Observable<any> {
+    this.httpClient = new HttpClient(this.httpBackend);
     return this.httpClient.post<any>("http://localhost:9090/authenticate", loginViewModel, { responseType: "json" })
       .pipe(map(user => {
         if (user) {

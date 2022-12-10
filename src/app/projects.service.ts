@@ -15,15 +15,15 @@ export class ProjectsService {
   constructor(private httpClient: HttpClient) { }
 
   getAllProjects(): Observable<Project[]> {
-    var currentUser = { token: '' };
-    var headers = new HttpHeaders;
-    headers = headers.set('Authorization', 'Bearer');
-    if (sessionStorage['currentUser'] != null) {
-      currentUser = JSON.parse(sessionStorage['currentUser']);
-      headers = headers.set("Authorization", "Bearer " + currentUser.token);
-    }
+    // var currentUser = { token: '' };
+    // var headers = new HttpHeaders;
+    // headers = headers.set('Authorization', 'Bearer');
+    // if (sessionStorage['currentUser'] != null) {
+    //   currentUser = JSON.parse(sessionStorage['currentUser']);
+    //   headers = headers.set("Authorization", "Bearer " + currentUser.token);
+    // }
     return this.httpClient
-      .get<Project[]>(this.urlPrefix + '/api/projects', { headers: headers, responseType: 'json' }) // for node js
+      .get<Project[]>('http://localhost:9090/api/projects', { responseType: 'json' }) // for node js
       // .get<Project[]>(this.urlPrefix + '/projects', { responseType: 'json' }) // for json-server
       .pipe(
         map((data: Project[]) => {
