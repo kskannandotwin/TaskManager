@@ -9,13 +9,13 @@ import { LoginComponent } from './login/login.component';
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [CanActivateGuardService] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [CanActivateGuardService], data: { expectedRole: 'Admin' } },
   { path: 'about', component: AboutComponent },
-  { path: 'projects', component: ProjectsComponent, canActivate: [CanActivateGuardService] }  
+  { path: 'projects', component: ProjectsComponent, canActivate: [CanActivateGuardService], data: { expectedRole: 'Admin' } }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: true})],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

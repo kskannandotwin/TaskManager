@@ -133,7 +133,11 @@ app.post("/authenticate", function (req, res) {
   if (user) {
     console.log("Response: ", user);
     //generate jwt token
-    const token = helpers.generateAccessToken({ username: req.body.UserName });
+    const token = helpers.generateAccessToken({
+      userName: user.UserName,
+      email: user.Email,
+      role: user.Role,
+    });
     res.send(helpers.toCamel({ ...user, token: token, password: "" }));
   }
   else {
