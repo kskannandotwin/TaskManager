@@ -36,38 +36,32 @@ export class ProjectsService {
   }
 
   insertProject(newProject: Project): Observable<Project> {
-    var currentUser = { token: '' };
-    var headers = new HttpHeaders;
-    headers = headers.set('Authorization', 'Bearer');
-    if (sessionStorage['currentUser'] != null) {
-      currentUser = JSON.parse(sessionStorage['currentUser']);
-      headers = headers.set("Authorization", "Bearer " + currentUser.token);
-    }
-    return this.httpClient.post<Project>(this.urlPrefix + "/api/projects", newProject, { headers: headers, responseType: "json" }); // for node js
-    // return this.httpClient.post<Project>(this.urlPrefix + "/projects", newProject, { responseType: "json" }); // for json-server
+    var requestHeaders = new HttpHeaders();
+    requestHeaders = requestHeaders.set("X-XSRF-TOKEN", sessionStorage['XSRFRequestToken']);
+    return this.httpClient.post<Project>(this.urlPrefix + "/api/projects", newProject, { headers: requestHeaders, responseType: "json" });
   }
 
   updateProject(existingProject: Project): Observable<Project> {
-    var currentUser = { token: '' };
-    var headers = new HttpHeaders;
-    headers = headers.set('Authorization', 'Bearer');
-    if (sessionStorage['currentUser'] != null) {
-      currentUser = JSON.parse(sessionStorage['currentUser']);
-      headers = headers.set("Authorization", "Bearer " + currentUser.token);
-    }
-    return this.httpClient.put<Project>(this.urlPrefix + "/api/projects", existingProject, { headers: headers, responseType: "json" }); // for node js
+    // var currentUser = { token: '' };
+    // var headers = new HttpHeaders;
+    // headers = headers.set('Authorization', 'Bearer');
+    // if (sessionStorage['currentUser'] != null) {
+    //   currentUser = JSON.parse(sessionStorage['currentUser']);
+    //   headers = headers.set("Authorization", "Bearer " + currentUser.token);
+    // }
+    return this.httpClient.put<Project>(this.urlPrefix + "/api/projects", existingProject, { responseType: "json" }); // for node js
     // return this.httpClient.put<Project>(this.urlPrefix + "/projects" + existingProject.projectID, existingProject, { responseType: "json" }); // for json-server
   }
 
   deleteProject(ProjectID: number): Observable<string> {
-    var currentUser = { token: '' };
-    var headers = new HttpHeaders;
-    headers = headers.set('Authorization', 'Bearer');
-    if (sessionStorage['currentUser'] != null) {
-      currentUser = JSON.parse(sessionStorage['currentUser']);
-      headers = headers.set("Authorization", "Bearer " + currentUser.token);
-    }
-    return this.httpClient.delete<string>(this.urlPrefix + "/api/projects?ProjectID=" + ProjectID, { headers: headers }); // for node js
+    // var currentUser = { token: '' };
+    // var headers = new HttpHeaders;
+    // headers = headers.set('Authorization', 'Bearer');
+    // if (sessionStorage['currentUser'] != null) {
+    //   currentUser = JSON.parse(sessionStorage['currentUser']);
+    //   headers = headers.set("Authorization", "Bearer " + currentUser.token);
+    // }
+    return this.httpClient.delete<string>(this.urlPrefix + "/api/projects?ProjectID=" + ProjectID); // for node js
     // return this.httpClient.delete<string>(this.urlPrefix + "/projects/" + ProjectID); // for json-server
   }
 
@@ -81,7 +75,7 @@ export class ProjectsService {
     }
     return this.httpClient.get<Project[]>(
       this.urlPrefix + '/api/projects/search/' + searchBy + '/' + searchText,
-      { headers: headers, responseType: 'json' }
+      { responseType: 'json' }
     );
   }
 }
