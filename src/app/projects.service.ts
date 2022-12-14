@@ -14,21 +14,14 @@ export class ProjectsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllProjects(): Observable<Project[]> {
-    // var currentUser = { token: '' };
-    // var headers = new HttpHeaders;
-    // headers = headers.set('Authorization', 'Bearer');
-    // if (sessionStorage['currentUser'] != null) {
-    //   currentUser = JSON.parse(sessionStorage['currentUser']);
-    //   headers = headers.set("Authorization", "Bearer " + currentUser.token);
-    // }
+  getAllProjects(): Observable<Project[]> {   
     return this.httpClient
-      .get<Project[]>('http://localhost:9090/api/projects', { responseType: 'json' }) // for node js
+      .get<Project[]>(this.urlPrefix + '/api/projects', { responseType: 'json' }) // for node js
       // .get<Project[]>(this.urlPrefix + '/projects', { responseType: 'json' }) // for json-server
       .pipe(
         map((data: Project[]) => {
           for (let i = 0; i < data.length; i++) {
-            data[i].teamSize = data[i].teamSize * 100;
+            // data[i].teamSize = data[i].teamSize * 100;
           }
           return data;
         })
@@ -42,25 +35,11 @@ export class ProjectsService {
   }
 
   updateProject(existingProject: Project): Observable<Project> {
-    // var currentUser = { token: '' };
-    // var headers = new HttpHeaders;
-    // headers = headers.set('Authorization', 'Bearer');
-    // if (sessionStorage['currentUser'] != null) {
-    //   currentUser = JSON.parse(sessionStorage['currentUser']);
-    //   headers = headers.set("Authorization", "Bearer " + currentUser.token);
-    // }
     return this.httpClient.put<Project>(this.urlPrefix + "/api/projects", existingProject, { responseType: "json" }); // for node js
     // return this.httpClient.put<Project>(this.urlPrefix + "/projects" + existingProject.projectID, existingProject, { responseType: "json" }); // for json-server
   }
 
-  deleteProject(ProjectID: number): Observable<string> {
-    // var currentUser = { token: '' };
-    // var headers = new HttpHeaders;
-    // headers = headers.set('Authorization', 'Bearer');
-    // if (sessionStorage['currentUser'] != null) {
-    //   currentUser = JSON.parse(sessionStorage['currentUser']);
-    //   headers = headers.set("Authorization", "Bearer " + currentUser.token);
-    // }
+  deleteProject(ProjectID: number): Observable<string> {    
     return this.httpClient.delete<string>(this.urlPrefix + "/api/projects?ProjectID=" + ProjectID); // for node js
     // return this.httpClient.delete<string>(this.urlPrefix + "/projects/" + ProjectID); // for json-server
   }
