@@ -6,13 +6,15 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
 import { DashboardService } from '../dashboard.service';
 import { ProjectsComponent } from './projects/projects.component';
 import { FormsModule } from '@angular/forms';
+import { TeamSizeValidatorDirective } from '../team-size-validator.directive';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     AboutComponent,
     MyProfileComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    TeamSizeValidatorDirective
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import { FormsModule } from '@angular/forms';
     DashboardComponent,
     AboutComponent,
     MyProfileComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    TeamSizeValidatorDirective
   ],
   providers: [
     DashboardService
