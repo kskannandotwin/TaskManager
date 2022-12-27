@@ -70,7 +70,7 @@
 </div>
 
 <!-- new project -->
-<form #newForm="ngForm" novalidate="novalidate">
+<form #newForm="ngForm" novalidate="novalidate" appClientLocationStatusValidator>
     <div class="modal" role="dialog" id="newModal">
         <div class="modal-dialog">
             <div class="modal-content" style="width:700px">
@@ -201,6 +201,10 @@
                             <span class="text-danger"
                                 *ngIf="newClientLocationID.invalid && (newClientLocationID.dirty || newClientLocationID.touched || newForm.submitted) && newClientLocationID.errors?.['required']">Please
                                 select client location</span>
+
+                            <span class="text-danger"
+                                *ngIf="newForm.invalid && (newForm.dirty || newForm.touched || newForm.submitted) && newForm.errors?.['clientLocationStatus']">Support
+                                projects are not allowed at Tokyo</span>
                         </div>
                     </div>
 
@@ -215,7 +219,7 @@
 </form>
 
 <!-- edit project -->
-<form #editForm="ngForm" novalidate="novalidate">
+<form #editForm="ngForm" novalidate="novalidate" appClientLocationStatusValidator>
     <div class="modal" role="dialog" id="editModal">
         <div class="modal-dialog">
             <div class="modal-content" style="width: 700px">
@@ -349,6 +353,10 @@
                             <span class="text-danger"
                                 *ngIf="editClientLocationID.invalid && (editClientLocationID.dirty || editClientLocationID.touched || editForm.submitted) && editClientLocationID.errors?.['required']">Please
                                 select client location</span>
+
+                                <span class="text-danger"
+                                *ngIf="editForm.invalid && (editForm.dirty || editForm.touched || editForm.submitted) && editForm.errors?.['clientLocationStatus']">Support
+                                projects are not allowed at Tokyo</span>
                         </div>
                     </div>
 
