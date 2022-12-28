@@ -85,7 +85,8 @@
                         <div class="col-sm-8">
                             <input type="number" id="txtNewProjectID" style="width:100px" class="form-control"
                                 placeholder="Project ID" name="ProjectID" [(ngModel)]="newProject.projectID"
-                                required="required" pattern="^[0-9]*$" #newProjectID="ngModel"
+                                required="required" pattern="^[0-9]*$" appProjectIDUniqueValidator
+                                #newProjectID="ngModel"
                                 [ngClass]="{'is-invalid':newProjectID.invalid && (newProjectID.dirty || newProjectID.touched || newForm.submitted), 'is-valid':newProjectID.valid && (newProjectID.dirty || newProjectID.touched || newForm.submitted)}">
 
                             <span class="text-danger"
@@ -95,6 +96,10 @@
                             <span class="text-danger"
                                 *ngIf="newProjectID.invalid && (newProjectID.dirty || newProjectID.touched || newForm.submitted) && newProjectID.errors?.['pattern']">Project
                                 ID should contain numbers only</span>
+
+                            <span class="text-danger"
+                                *ngIf="newProjectID.invalid && (newProjectID.dirty || newProjectID.touched || newForm.submitted) && newProjectID.errors?.['uniqueProjectID']">Duplicate
+                                Project ID</span>
                         </div>
                     </div>
 
@@ -236,7 +241,7 @@
                             <input type="number" id="txtEditProjectID" style="width: 100px"
                                 class="form-control-plain-text" placeholder="Project ID" name="ProjectID"
                                 [(ngModel)]="editProject.projectID" disabled="disabled" required="required"
-                                pattern="^[0-9]*$" #editProjectID="ngModel"
+                                pattern="^[0-9]*$" appProjectIDUniqueValidator #editProjectID="ngModel"
                                 [ngClass]="{'is-invalid':editProjectID.invalid && (editProjectID.dirty || editProjectID.touched || editForm.submitted), 'is-valid':editProjectID.valid && (editProjectID.dirty || editProjectID.touched || editForm.submitted)}">
 
                             <span class="text-danger"
@@ -246,6 +251,10 @@
                             <span class="text-danger"
                                 *ngIf="editProjectID.invalid && (editProjectID.dirty || editProjectID.touched || editForm.submitted) && editProjectID.errors?.['pattern']">Project
                                 ID should contain numbers only</span>
+
+                            <span class="text-danger"
+                                *ngIf="editProjectID.invalid && (editProjectID.dirty || editProjectID.touched || editForm.submitted) && editProjectID.errors?.['uniqueProjectID']">Duplicate
+                                Project ID</span>
                         </div>
                     </div>
 
@@ -354,7 +363,7 @@
                                 *ngIf="editClientLocationID.invalid && (editClientLocationID.dirty || editClientLocationID.touched || editForm.submitted) && editClientLocationID.errors?.['required']">Please
                                 select client location</span>
 
-                                <span class="text-danger"
+                            <span class="text-danger"
                                 *ngIf="editForm.invalid && (editForm.dirty || editForm.touched || editForm.submitted) && editForm.errors?.['clientLocationStatus']">Support
                                 projects are not allowed at Tokyo</span>
                         </div>

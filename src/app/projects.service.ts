@@ -28,6 +28,11 @@ export class ProjectsService {
       );
   }
 
+  getProjectByProjectID(ProjectID: number): Observable<Project> {
+    return this.httpClient.get<Project>(this.urlPrefix + "/api/projects/searchbyprojectid/" + ProjectID, { responseType: "json" }); // for node js
+    // return this.httpClient.put<Project>(this.urlPrefix + "/projects" + existingProject.projectID, existingProject, { responseType: "json" }); // for json-server
+  }
+
   insertProject(newProject: Project): Observable<Project> {
     var requestHeaders = new HttpHeaders();
     requestHeaders = requestHeaders.set("X-XSRF-TOKEN", sessionStorage['XSRFRequestToken']);
