@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { CountriesService } from '../countries.service';
+import { Country } from '../country';
 
 @Component({
   selector: 'app-sign-up',
@@ -9,15 +11,22 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class SignUpComponent {
   signUpForm: FormGroup;
   genders = ['male', 'female'];
+  countries: Country[] = [];
+
+  constructor(private countriesService: CountriesService) {
+
+  }
 
   ngOnInit() {
+    this.countries = this.countriesService.getCountries();
     this.signUpForm = new FormGroup({
       firstName: new FormControl(null),
       lastName: new FormControl(null),
       email: new FormControl(null),
       mobile: new FormControl(null),
       dateOfBirth: new FormControl(null),
-      gender: new FormControl(null)
+      gender: new FormControl(null),
+      countryID: new FormControl(null)
     });
   }
 }
