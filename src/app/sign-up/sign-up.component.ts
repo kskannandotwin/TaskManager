@@ -31,7 +31,41 @@ export class SignUpComponent {
     });
 
     this.signUpForm.valueChanges.subscribe((value: any) => {
-      console.log(value);
+      // console.log(value);
+    });
+  }
+
+  onSubmitClick() {
+    // display current form values
+    // console.log(this.signUpForm.value);
+
+    // setValue;
+    // this.signUpForm.setValue({
+    //   firstName: 'Adam',
+    //   lastName: 'Smith',
+    //   email: 'smith@gmail.com',
+    //   mobile: 5699754654,
+    //   dateOfBirth: '2020-01-01',
+    //   gender: 'male',
+    //   countryID: 3,
+    //   receiveNewsLetters: true
+    // });
+
+    // patchValue;
+    // this.signUpForm.patchValue({
+    //   firstName: 'Adam',
+    //   lastName: 'Smith',
+    //   email: 'smith@gmail.com'
+    // });
+
+    // reset;
+    // this.signUpForm.reset();
+
+    // reset with parameters;
+    this.signUpForm.reset({
+      firstName: 'Adam',
+      lastName: 'Smith',
+      email: 'smith@gmail.com'
     });
   }
 }
