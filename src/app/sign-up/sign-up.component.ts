@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -8,6 +8,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class SignUpComponent {
   signUpForm: FormGroup;
+  genders = ['male', 'female'];
 
   ngOnInit() {
     this.signUpForm = new FormGroup({
