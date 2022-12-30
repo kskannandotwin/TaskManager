@@ -29,5 +29,9 @@ export class SignUpComponent {
       countryID: new FormControl(null),
       receiveNewsLetters: new FormControl(null)
     });
+
+    this.signUpForm.valueChanges.subscribe((value: any) => {
+      console.log(value);
+    });
   }
 }
