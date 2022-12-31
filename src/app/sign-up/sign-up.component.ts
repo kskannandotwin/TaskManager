@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { CountriesService } from '../countries.service';
 import { Country } from '../country';
 
@@ -29,7 +29,8 @@ export class SignUpComponent {
       dateOfBirth: new FormControl(null),
       gender: new FormControl(null),
       countryID: new FormControl(null),
-      receiveNewsLetters: new FormControl(null)
+      receiveNewsLetters: new FormControl(null),
+      skills: new FormArray([])
     });
 
     this.signUpForm.valueChanges.subscribe((value: any) => {
@@ -69,5 +70,22 @@ export class SignUpComponent {
       lastName: 'Smith',
       email: 'smith@gmail.com'
     });
+  }
+
+  get skillsArray() {
+    return this.signUpForm.get('skills') as FormArray;
+  }
+
+  onAddSkill() {
+    var formGroup = new FormGroup({
+      skillName: new FormControl(null),
+      level: new FormControl(null)
+    });
+
+    (<FormArray>this.signUpForm.get('skills')).push(formGroup);
+  }
+
+  onRemoveClick(index: number) {
+    (<FormArray>this.signUpForm.get('skills')).removeAt(index);
   }
 }
