@@ -20,8 +20,10 @@ export class SignUpComponent {
   ngOnInit() {
     this.countries = this.countriesService.getCountries();
     this.signUpForm = new FormGroup({
-      firstName: new FormControl(null),
-      lastName: new FormControl(null),
+      personName: new FormGroup({
+        firstName: new FormControl(null),
+        lastName: new FormControl(null)
+      }),
       email: new FormControl(null),
       mobile: new FormControl(null),
       dateOfBirth: new FormControl(null),
