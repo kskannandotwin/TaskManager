@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { CountriesService } from '../countries.service';
 import { Country } from '../country';
 
@@ -13,24 +13,25 @@ export class SignUpComponent {
   genders = ['male', 'female'];
   countries: Country[] = [];
 
-  constructor(private countriesService: CountriesService) {
+  constructor(private countriesService: CountriesService, private formBuilder: FormBuilder) {
 
   }
 
   ngOnInit() {
     this.countries = this.countriesService.getCountries();
-    this.signUpForm = new FormGroup({
-      personName: new FormGroup({
-        firstName: new FormControl(null),
-        lastName: new FormControl(null)
+
+    this.signUpForm = this.formBuilder.group({
+      personName: this.formBuilder.group({
+        firstName: null,
+        lastName: null
       }),
-      email: new FormControl(null),
-      mobile: new FormControl(null),
-      dateOfBirth: new FormControl(null),
-      gender: new FormControl(null),
-      countryID: new FormControl(null),
-      receiveNewsLetters: new FormControl(null),
-      skills: new FormArray([])
+      email: null,
+      mobile: null,
+      dateOfBirth: null,
+      gender: null,
+      countryID: null,
+      receiveNewsLetters: null,
+      skills: this.formBuilder.array([])
     });
 
     this.signUpForm.valueChanges.subscribe((value: any) => {
