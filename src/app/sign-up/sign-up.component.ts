@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CountriesService } from '../countries.service';
 import { Country } from '../country';
 
@@ -9,7 +9,7 @@ import { Country } from '../country';
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent {
-  signUpForm: FormGroup;
+  signUpForm: FormGroup | any = null;
   genders = ['male', 'female'];
   countries: Country[] = [];
 
@@ -22,15 +22,15 @@ export class SignUpComponent {
 
     this.signUpForm = this.formBuilder.group({
       personName: this.formBuilder.group({
-        firstName: null,
-        lastName: null
+        firstName: ['', [Validators.required, Validators.minLength(2)]],
+        lastName: ['', [Validators.required, Validators.minLength(2)]],
       }),
-      email: null,
-      mobile: null,
-      dateOfBirth: null,
-      gender: null,
-      countryID: null,
-      receiveNewsLetters: null,
+      email: ['', [Validators.required, Validators.email]],
+      mobile: ['', [Validators.required, Validators.pattern(/^[789]\d{9}$/)]],
+      dateOfBirth: ['', [Validators.required]],
+      gender: ['', [Validators.required]],
+      countryID: ['', [Validators.required]],
+      receiveNewsLetters: [''],
       skills: this.formBuilder.array([])
     });
 
@@ -41,7 +41,8 @@ export class SignUpComponent {
 
   onSubmitClick() {
     // display current form values
-    // console.log(this.signUpForm.value);
+    this.signUpForm['submitted'] = true;
+    console.log(this.signUpForm);
 
     // setValue;
     // this.signUpForm.setValue({
@@ -66,11 +67,11 @@ export class SignUpComponent {
     // this.signUpForm.reset();
 
     // reset with parameters;
-    this.signUpForm.reset({
-      firstName: 'Adam',
-      lastName: 'Smith',
-      email: 'smith@gmail.com'
-    });
+    // this.signUpForm.reset({
+    //   firstName: 'Adam',
+    //   lastName: 'Smith',
+    //   email: 'smith@gmail.com'
+    // });
   }
 
   get skillsArray() {
@@ -78,9 +79,9 @@ export class SignUpComponent {
   }
 
   onAddSkill() {
-    var formGroup = new FormGroup({
-      skillName: new FormControl(null),
-      level: new FormControl(null)
+    var formGroup = this.formBuilder.group({
+      skillName: [null, [Validators.required]],
+      level: [null, [Validators.required]]
     });
 
     (<FormArray>this.signUpForm.get('skills')).push(formGroup);
