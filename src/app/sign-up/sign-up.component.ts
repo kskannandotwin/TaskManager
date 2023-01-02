@@ -23,16 +23,23 @@ export class SignUpComponent {
 
     this.signUpForm = this.formBuilder.group({
       personName: this.formBuilder.group({
-        firstName: ['', [Validators.required, Validators.minLength(2)]],
-        lastName: ['', [Validators.required, Validators.minLength(2)]],
+        firstName: [null, [Validators.required, Validators.minLength(2)]],
+        lastName: [null, [Validators.required, Validators.minLength(2)]],
       }),
-      email: ['', [Validators.required, Validators.email]],
-      mobile: ['', [Validators.required, Validators.pattern(/^[789]\d{9}$/)]],
-      dateOfBirth: ['', [Validators.required, this.customValidatorsService.minimumAgeValidator(18)]],
-      gender: ['', [Validators.required]],
-      countryID: ['', [Validators.required]],
-      receiveNewsLetters: [''],
+
+      email: [null, [Validators.required, Validators.email]],
+      mobile: [null, [Validators.required, Validators.pattern(/^[789]\d{9}$/)]],
+      dateOfBirth: [null, [Validators.required, this.customValidatorsService.minimumAgeValidator(18)]],
+      password: [null, [Validators.required]],
+      confirmPassword: [null, [Validators.required]],
+      gender: [null, [Validators.required]],
+      countryID: [null, [Validators.required]],
+      receiveNewsLetters: [null],
       skills: this.formBuilder.array([])
+    }, {
+      validators: [
+        this.customValidatorsService.compareValidator("confirmPassword", "password")
+      ]
     });
 
     this.signUpForm.valueChanges.subscribe((value: any) => {
