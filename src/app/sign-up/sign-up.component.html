@@ -165,9 +165,9 @@
                                         'is-valid': skill.get('skillName')?.valid && (skill.get('skillName')?.dirty || skill.get('skillName')?.touched || signUpForm.submitted)}">
                                 </div>
                                 <div class="col-4">
-                                    <select class="form-control" name="level" id="level" formControlName="level"
-                                        [ngClass]="{'is-invalid': skill.get('level')?.invalid && (skill.get('level')?.dirty || skill.get('level')?.touched || signUpForm.submitted),
-                                    'is-valid': skill.get('level')?.valid && (skill.get('level')?.dirty || skill.get('level')?.touched || signUpForm.submitted)}">
+                                    <select class="form-control" name="skillLevel" id="skillLevel" formControlName="skillLevel"
+                                        [ngClass]="{'is-invalid': skill.get('skillLevel')?.invalid && (skill.get('skillLevel')?.dirty || skill.get('skillLevel')?.touched || signUpForm.submitted),
+                                    'is-valid': skill.get('skillLevel')?.valid && (skill.get('skillLevel')?.dirty || skill.get('skillLevel')?.touched || signUpForm.submitted)}">
                                         <option value="null">Please select</option>
                                         <option value="Beginner">Beginner</option>
                                         <option value="Intermediate">Intermediate</option>
@@ -187,6 +187,7 @@
                 </div>
                 <div class="card-footer">
                     <button class="btn btn-success float-right">Create Account</button>
+                    <div class="text-danger">{{ registerError }}</div>
                 </div>
             </div>
         </form>
