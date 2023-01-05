@@ -43,6 +43,11 @@ export class LoginService {
       }));
   }
 
+  getUserByEmail(Email: string): Observable<any> {
+    this.httpClient = new HttpClient(this.httpBackend);
+    return this.httpClient.get<any>("http://localhost:9090/api/getUserByEmail/" + Email, { responseType: "json" });
+  }
+
   public Logout() {
     sessionStorage.removeItem('currentUser');
     this.currentUserName = null;
