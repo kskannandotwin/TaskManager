@@ -13,8 +13,6 @@ export class LoginService {
 
   private httpClient: HttpClient | null = null;
 
-  urlPrefix: string = "http://localhost:9090";
-
   constructor(private httpBackend: HttpBackend, private jwtHelperService: JwtHelperService) { }
 
   currentUserName: any = null;
