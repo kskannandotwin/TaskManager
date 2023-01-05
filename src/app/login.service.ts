@@ -21,7 +21,7 @@ export class LoginService {
 
   public Login(loginViewModel: LoginViewModel): Observable<any> {
     this.httpClient = new HttpClient(this.httpBackend);
-    return this.httpClient.post<any>(this.urlPrefix + "/authenticate", loginViewModel, { responseType: "json", observe: "response" })
+    return this.httpClient.post<any>("http://localhost:9090/authenticate", loginViewModel, { responseType: "json", observe: "response" })
       .pipe(map(response => {
         if (response) {
           this.currentUserName = response.body.userName;
@@ -34,7 +34,7 @@ export class LoginService {
 
   public Register(SignUpViewModel: SignUpViewModel): Observable<any> {
     this.httpClient = new HttpClient(this.httpBackend);
-    return this.httpClient.post<any>(this.urlPrefix + "/register", SignUpViewModel, { responseType: "json", observe: "response" })
+    return this.httpClient.post<any>("http://localhost:9090/register", SignUpViewModel, { responseType: "json", observe: "response" })
       .pipe(map(response => {
         if (response) {
           this.currentUserName = response.body.userName;
@@ -43,11 +43,6 @@ export class LoginService {
         }
         return response.body;
       }));
-  }
-
-  getUserByEmail(Email: string): Observable<any> {
-    this.httpClient = new HttpClient(this.httpBackend);
-    return this.httpClient.get<any>(this.urlPrefix + "/api/getUserByEmail/" + Email, { responseType: 'json' });
   }
 
   public Logout() {
