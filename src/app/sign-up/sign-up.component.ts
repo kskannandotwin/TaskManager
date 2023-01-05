@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { CountriesService } from '../countries.service';
 import { Country } from '../country';
 import { CustomValidatorsService } from '../custom-validators.service';
+import { LoginService } from '../login.service';
+import { SignUpViewModel } from '../sign-up-view-model';
 
 @Component({
   selector: 'app-sign-up',
@@ -13,13 +17,22 @@ export class SignUpComponent {
   signUpForm: FormGroup | any = null;
   genders = ['male', 'female'];
   countries: Country[] = [];
+  registerError: string | null = null;
 
-  constructor(private countriesService: CountriesService, private formBuilder: FormBuilder, private customValidatorsService: CustomValidatorsService) {
+  constructor(
+    private countriesService: CountriesService,
+    private formBuilder: FormBuilder,
+    private customValidatorsService: CustomValidatorsService,
+    private loginService: LoginService,
+    private router: Router
+  ) {
 
   }
 
   ngOnInit() {
-    this.countries = this.countriesService.getCountries();
+    this.countriesService.getCountries().subscribe((response) => {
+      this.countries = response;
+    });
 
     this.signUpForm = this.formBuilder.group({
       personName: this.formBuilder.group({
@@ -51,6 +64,18 @@ export class SignUpComponent {
     // display current form values
     this.signUpForm['submitted'] = true;
     console.log(this.signUpForm);
+
+    if (this.signUpForm.valid) {
+      var signUpViewModel = this.signUpForm.value as SignUpViewModel;
+      this.loginService.Register(signUpViewModel).subscribe(
+        (response) => {
+          this.router.navigate(['tasks']);
+        },
+        (error) => {
+          console.log(error);
+          this.registerError = 'Unable to submit';
+        });
+    }
 
     // setValue;
     // this.signUpForm.setValue({
@@ -89,7 +114,7 @@ export class SignUpComponent {
   onAddSkill() {
     var formGroup = this.formBuilder.group({
       skillName: [null, [Validators.required]],
-      level: [null, [Validators.required]]
+      skillLevel: [null, [Validators.required]]
     });
 
     (<FormArray>this.signUpForm.get('skills')).push(formGroup);

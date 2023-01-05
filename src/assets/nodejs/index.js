@@ -10,6 +10,7 @@ var { randomBytes } = require("crypto");
 var helpers = require("./helpers");
 var users = require("./projects");
 var clientlocations = require("./clientlocations");
+var countries = require("./countries");
 
 app.listen(9090, startup);
 function startup() {
@@ -111,6 +112,9 @@ app.delete(
   [authenticateToken],
   clientlocations.deleteClientLocations
 );
+
+//GET api/countries
+app.get("/api/countries", countries.getCountries);
 
 //POST /register
 app.post("/register", function (req, res) {
