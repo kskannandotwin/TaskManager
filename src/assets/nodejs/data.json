@@ -42,14 +42,36 @@
     {
       "personName": { "firstName": "John", "lastName": "Smith" },
       "email": "john@gmail.com",
-      "mobile": "8654356482",
-      "dateOfBirth": "2000-01-05",
+      "mobile": "9823082322",
+      "dateOfBirth": "1990-05-08",
       "password": "",
       "confirmPassword": "johnsmith",
       "gender": "male",
       "countryID": "51",
       "receiveNewsLetters": true,
-      "skills": [{ "skillName": "java", "skillLevel": "Beginner" }],
+      "skills": [
+        { "skillName": "Java", "level": "Professional" },
+        { "skillName": "Angular", "level": "Expert" }
+      ],
+      "UserName": "john@gmail.com",
+      "Email": "john@gmail.com",
+      "Password": "johnsmith",
+      "Role": "Employee"
+    },
+    {
+      "personName": { "firstName": "John", "lastName": "Smith" },
+      "email": "john@gmail.com",
+      "mobile": "7539514862",
+      "dateOfBirth": "2000-02-05",
+      "password": "",
+      "confirmPassword": "johnsmith",
+      "gender": "male",
+      "countryID": "51",
+      "receiveNewsLetters": true,
+      "skills": [
+        { "skillName": "Java", "skillLevel": "Professional" },
+        { "skillName": "Angular", "skillLevel": "Expert" }
+      ],
       "UserName": "john@gmail.com",
       "Email": "john@gmail.com",
       "Password": "johnsmith",
