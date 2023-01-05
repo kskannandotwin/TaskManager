@@ -40,9 +40,7 @@ export class SignUpComponent {
         lastName: [null, [Validators.required, Validators.minLength(2)]],
       }),
 
-      email: [null, [Validators.required, Validators.email], [
-        this.customValidatorsService.duplicateEmailValidator()
-      ], { updateOn: 'blur' }],
+      email: [null, [Validators.required, Validators.email]],
       mobile: [null, [Validators.required, Validators.pattern(/^[789]\d{9}$/)]],
       dateOfBirth: [null, [Validators.required, this.customValidatorsService.minimumAgeValidator(18)]],
       password: [null, [Validators.required]],
