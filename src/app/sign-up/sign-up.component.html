@@ -50,7 +50,8 @@
                             <span class="text-danger"
                                 *ngIf="signUpForm.get('email').invalid && (signUpForm.get('email').dirty || signUpForm.get('email').touched || signUpForm.submitted) && signUpForm.get('email').errors?.email">Email
                                 is invalid</span>
-                                <span class="text-danger"
+                                
+                            <span class="text-danger"
                                 *ngIf="signUpForm.get('email').invalid && (signUpForm.get('email').dirty || signUpForm.get('email').touched || signUpForm.submitted) && signUpForm.get('email').errors?.uniqueEmail">Email
                                 already exists</span>
                         </div>
@@ -168,7 +169,8 @@
                                         'is-valid': skill.get('skillName')?.valid && (skill.get('skillName')?.dirty || skill.get('skillName')?.touched || signUpForm.submitted)}">
                                 </div>
                                 <div class="col-4">
-                                    <select class="form-control" name="skillLevel" id="skillLevel" formControlName="skillLevel"
+                                    <select class="form-control" name="skillLevel" id="skillLevel"
+                                        formControlName="skillLevel"
                                         [ngClass]="{'is-invalid': skill.get('skillLevel')?.invalid && (skill.get('skillLevel')?.dirty || skill.get('skillLevel')?.touched || signUpForm.submitted),
                                     'is-valid': skill.get('skillLevel')?.valid && (skill.get('skillLevel')?.dirty || skill.get('skillLevel')?.touched || signUpForm.submitted)}">
                                         <option value="null">Please select</option>
