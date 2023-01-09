@@ -39,7 +39,8 @@
     <div class="col-xl-12 mx-auto">
         <div class="row">
             <div class="col-md-4" *ngFor="let project of projects; let i = index">
-                <app-project [currentProject]="project" [recordIndex]="i"></app-project>
+                <app-project [currentProject]="project" [recordIndex]="i" (editClick)="onEditClick($event, i)"
+                    (deleteClick)="onDeleteClick($event, i)"></app-project>
             </div>
         </div>
     </div>
