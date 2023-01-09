@@ -14,7 +14,15 @@ export class ProjectComponent {
   @Output() editClick = new EventEmitter();
   @Output() deleteClick = new EventEmitter();
 
+  hideDetails: boolean = false;
+
   constructor(public projectsService: ProjectsService) {}
+
+  ngOnInit() {
+    this.projectsService.myObservable.subscribe((hide) => {
+      this.hideDetails = hide;
+    })
+  }
 
   onEditClick($event: any, i: any) {
     this.editClick.emit({ $event, i });
