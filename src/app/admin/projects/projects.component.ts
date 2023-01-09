@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { ClientLocation } from 'src/app/client-location';
 import { ClientLocationsService } from 'src/app/client-locations.service';
 import { Project } from 'src/app/project';
@@ -164,9 +164,12 @@ export class ProjectsComponent implements OnInit {
       );
   }
 
-  @ViewChild('prj') prj: ProjectComponent;
+  @ViewChildren('prj') prj: QueryList<ProjectComponent>;
 
   onHideShowDetails($event: any) {
-    this.prj.toggleDetails();
+    let projs = this.prj.toArray();
+    for (let i = 0; i < projs.length; i++) {
+      projs[i].toggleDetails();
+    }
   }
 }
