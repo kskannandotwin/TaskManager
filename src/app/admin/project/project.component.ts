@@ -13,11 +13,17 @@ export class ProjectComponent {
   @Output() editClick = new EventEmitter();
   @Output() deleteClick = new EventEmitter();
 
+  hideDetails: boolean = false;
+
   onEditClick($event: any, i: any) {
     this.editClick.emit({ $event, i });
   }
 
   onDeleteClick($event: any, i: any) {
     this.deleteClick.emit({ $event, i });
+  }
+
+  toggleDetails() {
+    this.hideDetails = !this.hideDetails;
   }
 }

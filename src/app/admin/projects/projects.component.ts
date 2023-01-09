@@ -5,6 +5,7 @@ import { Project } from 'src/app/project';
 import { ProjectsService } from 'src/app/projects.service';
 import { NgForm } from '@angular/forms';
 import * as $ from 'jquery';
+import { ProjectComponent } from '../project/project.component';
 
 @Component({
   selector: 'app-projects',
@@ -161,5 +162,11 @@ export class ProjectsComponent implements OnInit {
           console.log(error);
         }
       );
+  }
+
+  @ViewChild('prj') prj: ProjectComponent;
+
+  onHideShowDetails($event: any) {
+    this.prj.toggleDetails();
   }
 }
