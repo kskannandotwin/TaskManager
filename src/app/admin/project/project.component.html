@@ -4,7 +4,7 @@
         <h5>{{project.projectName}}</h5>
     </div>
     <div class="card-body">
-        <table class="table table-borderless" [hidden]="hideDetails">
+        <table class="table table-borderless" [hidden]="projectsService.hideDetails">
             <tr>
                 <th>Date of Start</th>
                 <td>{{project.dateOfStart}}</td>

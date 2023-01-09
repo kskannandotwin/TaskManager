@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Project } from 'src/app/project';
+import { ProjectsService } from 'src/app/projects.service';
 
 @Component({
   selector: 'app-project',
@@ -13,7 +14,7 @@ export class ProjectComponent {
   @Output() editClick = new EventEmitter();
   @Output() deleteClick = new EventEmitter();
 
-  hideDetails: boolean = false;
+  constructor(public projectsService: ProjectsService) {}
 
   onEditClick($event: any, i: any) {
     this.editClick.emit({ $event, i });
@@ -21,9 +22,5 @@ export class ProjectComponent {
 
   onDeleteClick($event: any, i: any) {
     this.deleteClick.emit({ $event, i });
-  }
-
-  toggleDetails() {
-    this.hideDetails = !this.hideDetails;
   }
 }

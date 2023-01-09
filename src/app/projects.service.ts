@@ -14,6 +14,12 @@ export class ProjectsService {
 
   constructor(private httpClient: HttpClient) { }
 
+  hideDetails: boolean = false;
+  
+  toggleDetails() {
+    this.hideDetails = !this.hideDetails;
+  }
+
   getAllProjects(): Observable<Project[]> {   
     return this.httpClient
       .get<Project[]>(this.urlPrefix + '/api/projects', { responseType: 'json' }) // for node js
