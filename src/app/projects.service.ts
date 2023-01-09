@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, Observer } from 'rxjs';
+import { Observable, Observer, Subject } from 'rxjs';
 import { Project } from './project';
 import { map } from 'rxjs/operators';
 
@@ -9,26 +9,20 @@ import { map } from 'rxjs/operators';
 })
 export class ProjectsService {
 
-  public myObservable: Observable<boolean>;
-  private myObservers: Observer<boolean>[] = [];
-
+  public mySubject: Subject<boolean>;
 
   urlPrefix: string = "http://localhost:9090"; // node js url
   //urlPrefix: string = "http://localhost:3000"; // json-server url
 
   constructor(private httpClient: HttpClient) { 
-    this.myObservable = Observable.create((observer: Observer<boolean>) => {
-      this.myObservers.push(observer);
-    });
+    this.mySubject = new Subject<boolean>();
   }
   
   hideDetails: boolean = false;
   
   toggleDetails() {
     this.hideDetails = !this.hideDetails;
-    for(let i = 0; i < this.myObservers.length; i++) {
-      this.myObservers[i].next(this.hideDetails);
-    }
+    this.mySubject.next(this.hideDetails);
   }
 
   getAllProjects(): Observable<Project[]> {   
