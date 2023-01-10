@@ -75,7 +75,7 @@
                             <input type="number" id="txtNewProjectID" style="width:100px" class="form-control"
                                 placeholder="Project ID" name="ProjectID" [(ngModel)]="newProject.projectID"
                                 required="required" pattern="^[0-9]*$" appProjectIDUniqueValidator
-                                #newProjectID="ngModel"
+                                #newProjectID="ngModel" #prjID
                                 [ngClass]="{'is-invalid':newProjectID.invalid && (newProjectID.dirty || newProjectID.touched || newForm.submitted), 'is-valid':newProjectID.valid && (newProjectID.dirty || newProjectID.touched || newForm.submitted)}">
 
                             <span class="text-danger"

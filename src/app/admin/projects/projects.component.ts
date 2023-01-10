@@ -1,4 +1,4 @@
-import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { ClientLocation } from 'src/app/client-location';
 import { ClientLocationsService } from 'src/app/client-locations.service';
 import { Project } from 'src/app/project';
@@ -57,8 +57,13 @@ export class ProjectsComponent implements OnInit {
     }
   }
 
+  @ViewChild('prjID') prjID: ElementRef;
+
   onNewClick(event: any) {
     this.newForm.resetForm();
+    setTimeout(() => {
+      this.prjID.nativeElement.focus();
+    }, 100);
   }
 
   onSaveClick() {
