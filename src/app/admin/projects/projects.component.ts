@@ -46,6 +46,17 @@ export class ProjectsComponent implements OnInit {
     );
   }
 
+  isAllChecked: boolean = false;
+
+  @ViewChildren('prj') projs: QueryList<ProjectComponent> | any = null;
+
+  isAllCheckedChange($event: any) {
+    let proj = this.projs.toArray();
+    for(let i = 0; i < proj.length; i++) {
+      proj[i].isAllCheckedChange(this.isAllChecked);
+    }
+  }
+
   onNewClick(event: any) {
     this.newForm.resetForm();
   }

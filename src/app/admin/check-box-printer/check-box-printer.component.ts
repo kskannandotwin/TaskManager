@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class CheckBoxPrinterComponent {
   isChecked: boolean = false;
+
+  check() {
+    this.isChecked = true;
+  }
+
+  unCheck() {
+    this.isChecked = false;
+  }
 }
