@@ -1,4 +1,4 @@
-import { Component, ContentChild, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ContentChild, ContentChildren, EventEmitter, Input, Output, QueryList } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Project } from 'src/app/project';
 import { ProjectsService } from 'src/app/projects.service';
@@ -19,10 +19,10 @@ export class ProjectComponent {
   mySubscription: Subscription;
   hideDetails: boolean = false;
 
-  constructor(public projectsService: ProjectsService) {}
+  constructor(public projectsService: ProjectsService) { }
 
   ngOnInit() {
-    this.mySubscription =  this.projectsService.mySubject.subscribe((hide) => {
+    this.mySubscription = this.projectsService.mySubject.subscribe((hide) => {
       this.hideDetails = hide;
     })
   }
@@ -39,13 +39,18 @@ export class ProjectComponent {
     this.mySubscription.unsubscribe();
   }
 
-  @ContentChild('selectionBox') selectionBox: CheckBoxPrinterComponent;
+  @ContentChildren('selectionBox') selectionBoxes: QueryList<CheckBoxPrinterComponent>;
 
   isAllCheckedChange(b: boolean) {
-    if(b) {
-      this.selectionBox.check();
+    let selectionBox = this.selectionBoxes.toArray();
+    if (b) {
+      for (let i = 0; i < selectionBox.length; i++) {
+        selectionBox[i].check()
+      }
     } else {
-      this.selectionBox.unCheck();
+      for (let i = 0; i < selectionBox.length; i++) {
+        selectionBox[i].unCheck();
+      }
     }
   }
 }
