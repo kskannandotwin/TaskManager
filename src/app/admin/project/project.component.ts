@@ -1,4 +1,4 @@
-import { Component, ContentChild, ContentChildren, EventEmitter, Input, Output, QueryList } from '@angular/core';
+import { Component, ContentChild, ContentChildren, EventEmitter, Input, Output, QueryList, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Project } from 'src/app/project';
 import { ProjectsService } from 'src/app/projects.service';
@@ -20,6 +20,21 @@ export class ProjectComponent {
   hideDetails: boolean = false;
 
   constructor(public projectsService: ProjectsService) { }
+
+  ngOnChanges(simpleChanges: SimpleChanges) {
+    console.info('.....ngOnChanges called');
+
+    for (let propName in simpleChanges) {
+      let chng = simpleChanges[propName];
+      let cur = JSON.stringify(chng.currentValue);
+      let prev = JSON.stringify(chng.previousValue);
+      console.log(`${propName}: currentValue = ${cur}, previousValue = ${prev}`);
+    }
+
+    if(simpleChanges['project']) {
+      this.project.teamSize += 1;
+    }
+  }
 
   ngOnInit() {
     this.mySubscription = this.projectsService.mySubject.subscribe((hide) => {

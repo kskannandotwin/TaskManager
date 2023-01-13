@@ -15,7 +15,6 @@ export class ProjectsService {
   //urlPrefix: string = "http://localhost:3000"; // json-server url
 
   constructor(private httpClient: HttpClient) {
-    debugger; 
     this.mySubject = new BehaviorSubject<boolean>(false);
   }
   
@@ -24,7 +23,6 @@ export class ProjectsService {
   }
 
   getAllProjects(): Observable<Project[]> {
-    debugger;   
     return this.httpClient
       .get<Project[]>(this.urlPrefix + '/api/projects', { responseType: 'json' }) // for node js
       // .get<Project[]>(this.urlPrefix + '/projects', { responseType: 'json' }) // for json-server
