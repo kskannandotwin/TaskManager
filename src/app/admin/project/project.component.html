@@ -7,7 +7,7 @@
             </div>
             <div class="col-1">
                 <ng-content>
-                    
+
                 </ng-content>
             </div>
         </div>
@@ -20,7 +20,10 @@
             </tr>
             <tr>
                 <th>Team Size</th>
-                <td>{{project.teamSize}}</td>
+                <td>
+                    <span>{{project.teamSize}}</span>
+                    <span class="text-info">{{project.teamSize | numberToWords}}</span>
+                </td>
             </tr>
             <tr>
                 <th>Client Location</th>

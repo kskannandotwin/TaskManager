@@ -11,6 +11,7 @@ import { JwtUnauthorizedInterceptorService } from './jwt-unauthorized-intercepto
 import { JwtModule } from '@auth0/angular-jwt';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { TasksComponent } from './tasks/tasks.component';
+
 @NgModule({
   declarations: [
     AppComponent,
