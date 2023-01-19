@@ -198,7 +198,7 @@
                                 #newClientLocationID="ngModel"
                                 [ngClass]="{'is-invalid': newClientLocationID.invalid && (newClientLocationID.dirty || newClientLocationID.touched || newForm.submitted), 'is-valid': newClientLocationID.valid && (newClientLocationID.dirty || newClientLocationID.touched || newForm.submitted)}">
                                 <option value="null">Please Select</option>
-                                <option *ngFor="let clientLocation of clientLocations"
+                                <option *ngFor="let clientLocation of clientLocations | async"
                                     [value]="clientLocation.clientLocationID">
                                     {{clientLocation.clientLocationName}}
                                 </option>

@@ -7,6 +7,7 @@ import { NgForm } from '@angular/forms';
 import * as $ from 'jquery';
 import { ProjectComponent } from '../project/project.component';
 import { FilterPipe } from 'src/app/filter.pipe';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-projects',
@@ -16,7 +17,7 @@ import { FilterPipe } from 'src/app/filter.pipe';
 export class ProjectsComponent implements OnInit {
 
   projects: Project[];
-  clientLocations: ClientLocation[] = [];
+  clientLocations: Observable<ClientLocation[]> | any = [];
   showLoading: boolean = true;
   newProject: Project = new Project();
   editProject: Project = new Project();
@@ -46,11 +47,7 @@ export class ProjectsComponent implements OnInit {
         this.calculateNoOfPages();
       }
     );
-    this.clientLocationsService.getClientLocations().subscribe(
-      (response) => {
-        this.clientLocations = response;
-      }
-    );
+    this.clientLocations =  this.clientLocationsService.getClientLocations();
   }
 
   calculateNoOfPages() {
