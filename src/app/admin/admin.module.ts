@@ -14,6 +14,8 @@ import { CheckBoxPrinterComponent } from './check-box-printer/check-box-printer.
 import { NumberToWordsPipe } from '../number-to-words.pipe';
 import { FilterPipe } from '../filter.pipe';
 import { PagingPipe } from '../paging.pipe';
+import { ProjectDetailsComponent } from './project-details/project-details.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -28,11 +30,13 @@ import { PagingPipe } from '../paging.pipe';
     CheckBoxPrinterComponent,
     NumberToWordsPipe,
     FilterPipe,
-    PagingPipe
+    PagingPipe,
+    ProjectDetailsComponent
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   exports: [
     DashboardComponent,
@@ -41,7 +45,8 @@ import { PagingPipe } from '../paging.pipe';
     ProjectsComponent,
     TeamSizeValidatorDirective,
     ClientLocationStatusValidatorDirective,
-    ProjectIDUniqueValidatorDirective
+    ProjectIDUniqueValidatorDirective,
+    ProjectDetailsComponent
   ],
   providers: [
     DashboardService
