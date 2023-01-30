@@ -20,7 +20,7 @@ export class LoginComponent {
   onLoginClick(event: any) {
     this.loginService.Login(this.loginViewModel).subscribe(
       (response) => {
-        this.router.navigateByUrl("/dashboard");
+        this.router.navigate(["/admin", "dashboard"]);
       },
       (error) => {
         console.log(error);

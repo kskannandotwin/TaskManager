@@ -69,7 +69,7 @@ export class SignUpComponent {
       var signUpViewModel = this.signUpForm.value as SignUpViewModel;
       this.loginService.Register(signUpViewModel).subscribe(
         (response) => {
-          this.router.navigate(['tasks']);
+          this.router.navigate(['/employee', 'tasks']);
         },
         (error) => {
           console.log(error);
