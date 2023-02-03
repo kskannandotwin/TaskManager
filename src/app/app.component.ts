@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { LoginService } from './login.service';
 import { RouterLoggerService } from './router-logger.service';
-import { fadeAnimation } from './my-animations';
+import { fadeAnimation, slideUpAnimation } from './my-animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [fadeAnimation]
+  animations: [slideUpAnimation]
 })
 export class AppComponent {
   constructor(public loginService: LoginService, private routerLoggerService: RouterLoggerService, private router: Router) {
