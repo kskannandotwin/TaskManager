@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { LoginService } from './login.service';
 import { RouterLoggerService } from './router-logger.service';
-import { fadeAnimation, slideLeftOrRightAnimation, slideUpAnimation, zoomLeftAnimation, zoomUpAnimation } from './my-animations';
+import { fadeAnimation, keyFrameAnimation, slideLeftOrRightAnimation, slideUpAnimation, zoomLeftAnimation, zoomUpAnimation } from './my-animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [slideLeftOrRightAnimation]
+  animations: [keyFrameAnimation]
 })
 export class AppComponent {
   constructor(public loginService: LoginService, private routerLoggerService: RouterLoggerService, private router: Router) {

@@ -1,4 +1,4 @@
-import { animate, group, query, style, transition, trigger } from "@angular/animations";
+import { animate, group, keyframes, query, style, transition, trigger } from "@angular/animations";
 
 export const fadeAnimation = trigger('routeAnimations', [
     transition('* <=> *', [
@@ -145,4 +145,28 @@ export const slideLeftOrRightAnimation = trigger('routeAnimations', [
     transition('6 => 3', slideRight()),
     transition('6 => 4', slideRight()),
     transition('6 => 5', slideRight()),
+]);
+
+export const keyFrameAnimation = trigger('routeAnimations', [
+    transition('* <=> *', [
+        query(':enter, :leave', style({ position: 'absolute', width: '98%' }), { optional: true }),
+        group([
+            query(':enter', [
+                animate('1s', keyframes([
+                    style({ offset: 0, transform: 'scale(0.5) translateX(-100%)', 'transform-origin': 'center left' }),
+                    style({ offset: 0.3, transform: 'scale(0.5) translateX(30%)' }),
+                    style({ offset: 0.7, transform: 'scale(0.5) translateX(30%)' }),
+                    style({ offset: 1, transform: 'scale(1) translateX(0%)' })
+                ]))
+            ], { optional: true }),
+            query(':leave', [
+                animate('1s', keyframes([
+                    style({ offset: 0, transform: 'scale(1)', 'transform-origin': 'center right' }),
+                    style({ offset: 0.3, transform: 'scale(0.5) translateX(0%)' }),
+                    style({ offset: 0.7, transform: 'scale(0.5) translateX(0%)' }),
+                    style({ offset: 1, transform: 'scale(1) translateX(100%)' })
+                ]))
+            ], { optional: true })
+        ])
+    ])
 ]);
