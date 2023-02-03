@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { LoginService } from './login.service';
 import { RouterLoggerService } from './router-logger.service';
+import { fadeAnimation } from './my-animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [fadeAnimation]
 })
 export class AppComponent {
   constructor(public loginService: LoginService, private routerLoggerService: RouterLoggerService, private router: Router) {
@@ -26,5 +28,9 @@ export class AppComponent {
 
   onSearchClick() {
     console.log(this.loginService.currentUserName);
-  }  
+  }
+  
+  getState(outlet: RouterOutlet) {
+    return outlet.isActivated ? outlet.activatedRoute.snapshot.url[0].path : 'none';
+  }
 }
