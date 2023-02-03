@@ -116,6 +116,13 @@ app.delete(
 //GET api/countries
 app.get("/api/countries", countries.getCountries);
 
+//post api/routerlogger
+app.post("/api/routerlogger", function (req, res) {
+  console.log(req.body);
+  res.end();
+});
+
+
 //POST /register
 app.post("/register", function (req, res) {
   console.log(req.method, req.url);
