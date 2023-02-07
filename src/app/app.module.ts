@@ -5,14 +5,14 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { JwtInterceptorService } from './jwt-interceptor.service';
-import { JwtUnauthorizedInterceptorService } from './jwt-unauthorized-interceptor.service';
+import { JwtInterceptorService } from './interceptors/jwt-interceptor.service';
+import { JwtUnauthorizedInterceptorService } from './interceptors/jwt-unauthorized-interceptor.service';
 import { JwtModule } from '@auth0/angular-jwt';
-import { SignUpComponent } from './sign-up/sign-up.component';
-import { AlertDirective } from './alert.directive';
-import { RepeaterDirective } from './repeater.directive';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { AlertDirective } from './directives/alert.directive';
+import { RepeaterDirective } from './directives/repeater.directive';
 import { EmployeeModule } from './employee/employee.module';
 
 @NgModule({

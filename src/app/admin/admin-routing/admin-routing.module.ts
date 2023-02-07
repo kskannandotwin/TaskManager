@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CanActivateGuardService } from 'src/app/can-activate-guard.service';
-import { DashboardComponent } from '../dashboard/dashboard.component';
-import { ProjectsComponent } from '../projects/projects.component';
-import { ProjectDetailsComponent } from '../project-details/project-details.component';
+import { CanActivateGuardService } from '../../guards/can-activate-guard.service';
+import { DashboardComponent } from '../components/dashboard/dashboard.component';
+import { ProjectsComponent } from '../components/projects/projects.component';
+import { ProjectDetailsComponent } from '../components/project-details/project-details.component';
 
 const routes: Routes = [
   {
@@ -20,7 +20,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild(routes)
   ],
-  exports:[
+  exports: [
     RouterModule
   ]
 })

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { LoginService } from './login.service';
-import { RouterLoggerService } from './router-logger.service';
+import { LoginService } from './services/login.service';
+import { RouterLoggerService } from './services/router-logger.service';
 import { fadeAnimation, keyFrameAnimation, slideLeftOrRightAnimation, slideUpAnimation, zoomLeftAnimation, zoomUpAnimation } from './my-animations';
 
 @Component({
