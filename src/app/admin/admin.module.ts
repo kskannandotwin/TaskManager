@@ -1,53 +1,36 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AboutComponent } from './components/about/about.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { DashboardService } from '../services/dashboard.service';
 import { ProjectsComponent } from './components/projects/projects.component';
-import { FormsModule } from '@angular/forms';
-import { TeamSizeValidatorDirective } from '../directives/team-size-validator.directive';
-import { ClientLocationStatusValidatorDirective } from '../directives/client-location-status-validator.directive';
-import { ProjectIDUniqueValidatorDirective } from '../directives/project-idunique-validator.directive';
 import { ProjectComponent } from './components/project/project.component';
 import { CheckBoxPrinterComponent } from './components/check-box-printer/check-box-printer.component';
-import { NumberToWordsPipe } from '../pipes/number-to-words.pipe';
-import { FilterPipe } from '../pipes/filter.pipe';
-import { PagingPipe } from '../pipes/paging.pipe';
 import { ProjectDetailsComponent } from './components/project-details/project-details.component';
 import { RouterModule } from '@angular/router';
 import { AdminRoutingModule } from './admin-routing/admin-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     AboutComponent,
     MyProfileComponent,
-    ProjectsComponent,
-    TeamSizeValidatorDirective,
-    ClientLocationStatusValidatorDirective,
-    ProjectIDUniqueValidatorDirective,
+    ProjectsComponent,   
     ProjectComponent,
     CheckBoxPrinterComponent,
-    NumberToWordsPipe,
-    FilterPipe,
-    PagingPipe,
     ProjectDetailsComponent
   ],
   imports: [
-    CommonModule,
-    FormsModule,
     RouterModule,
+    SharedModule,
     AdminRoutingModule
   ],
   exports: [
     DashboardComponent,
     AboutComponent,
     MyProfileComponent,
-    ProjectsComponent,
-    TeamSizeValidatorDirective,
-    ClientLocationStatusValidatorDirective,
-    ProjectIDUniqueValidatorDirective,
+    ProjectsComponent,   
     ProjectDetailsComponent
   ],
   providers: [
