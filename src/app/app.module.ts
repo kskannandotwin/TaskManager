@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -14,10 +13,12 @@ import { AlertDirective } from './directives/alert.directive';
 import { RepeaterDirective } from './directives/repeater.directive';
 import { EmployeeModule } from './employee/employee.module';
 import { SharedModule } from './shared/shared.module';
+import { AboutComponent } from './admin/components/about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    AboutComponent,
     LoginComponent,
     SignUpComponent,
     AlertDirective,
@@ -27,7 +28,6 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     BrowserAnimationsModule,
     SharedModule,
-    AdminModule,
     EmployeeModule,
     JwtModule.forRoot({
       config: {

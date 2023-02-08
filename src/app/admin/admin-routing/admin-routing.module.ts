@@ -7,7 +7,7 @@ import { ProjectDetailsComponent } from '../components/project-details/project-d
 
 const routes: Routes = [
   {
-    path: 'admin', canActivate: [CanActivateGuardService], data: { expectedRole: 'Admin' }, children: [
+    path: '', canActivate: [CanActivateGuardService], data: { expectedRole: 'Admin' }, children: [
       { path: 'dashboard', component: DashboardComponent, data: { linkIndex: 0 } },
       { path: 'projects', component: ProjectsComponent, data: { linkIndex: 2 } },
       { path: 'projects/view/:projectid', component: ProjectDetailsComponent, data: { linkIndex: 3 } }
