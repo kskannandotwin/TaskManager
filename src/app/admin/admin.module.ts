@@ -9,15 +9,25 @@ import { ProjectDetailsComponent } from './components/project-details/project-de
 import { RouterModule } from '@angular/router';
 import { AdminRoutingModule } from './admin-routing/admin-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { CountriesComponent } from './components/countries/countries.component';
+import { ClientLocationsComponent } from './components/client-locations/client-locations.component';
+import { TaskPrioritiesComponent } from './components/task-priorities/task-priorities.component';
+import { TaskStatusComponent } from './components/task-status/task-status.component';
+import { MastersComponent } from './components/masters/masters.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     MyProfileComponent,
-    ProjectsComponent,   
+    ProjectsComponent,
     ProjectComponent,
     CheckBoxPrinterComponent,
-    ProjectDetailsComponent
+    ProjectDetailsComponent,
+    CountriesComponent,
+    ClientLocationsComponent,
+    TaskPrioritiesComponent,
+    TaskStatusComponent,
+    MastersComponent
   ],
   imports: [
     RouterModule,
@@ -27,7 +37,7 @@ import { SharedModule } from '../shared/shared.module';
   exports: [
     DashboardComponent,
     MyProfileComponent,
-    ProjectsComponent,   
+    ProjectsComponent,
     ProjectDetailsComponent
   ],
   providers: [
