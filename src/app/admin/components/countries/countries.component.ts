@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./countries.component.scss']
 })
 export class CountriesComponent {
-
+  message: string | null = null;
 }
