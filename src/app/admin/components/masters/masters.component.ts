@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./masters.component.scss']
 })
 export class MastersComponent {
+  masterMenuItems = [
+    { itemName: 'Countries', displayName: 'Countries'},
+    { itemName: 'ClientLocations', displayName: 'Client Locations'},
+    { itemName: 'TaskPriorities', displayName: 'Task Priorities'},
+    { itemName: 'TaskStatus', displayName: 'Task Status'},
+  ];
 
+  activeItem: string;
 }
