@@ -42,6 +42,12 @@ import { MastersComponent } from './components/masters/masters.component';
   ],
   providers: [
     DashboardService
+  ],
+  entryComponents: [
+    CountriesComponent,
+    ClientLocationsComponent,
+    TaskPrioritiesComponent,
+    TaskStatusComponent
   ]
 })
 export class AdminModule { }
