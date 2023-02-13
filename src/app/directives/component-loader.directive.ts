@@ -5,6 +5,6 @@ import { Directive, ViewContainerRef } from '@angular/core';
 })
 export class ComponentLoaderDirective {
 
-  constructor(public viewConainerRef: ViewContainerRef) { }
+  constructor(public viewContainerRef: ViewContainerRef) { }
 
 }

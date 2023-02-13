@@ -47,8 +47,8 @@ export class MastersComponent {
         var componentLoadersArray = this.componentLoaders.toArray();
         var componentFactory = this.componentFactoryResolver.resolveComponentFactory(clickedMasterMenuItem.component);
 
-        var viewConainerRef = componentLoadersArray[this.tabs.length - 1].viewConainerRef;
-        viewConainerRef.createComponent(componentFactory);
+        var viewContainerRef = componentLoadersArray[this.tabs.length - 1].viewContainerRef;
+        viewContainerRef.createComponent(componentFactory);
       }, 100);
     }
 
