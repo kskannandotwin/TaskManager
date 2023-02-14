@@ -49,6 +49,9 @@ export class MastersComponent {
 
         var viewContainerRef = componentLoadersArray[this.tabs.length - 1].viewContainerRef;
         var componentRef = viewContainerRef.createComponent(componentFactory);
+
+        this.tabs[this.tabs.length - 1].viewContainerRef = viewContainerRef;
+
         if (clickedMasterMenuItem.component.name == 'CountriesComponent') {
           var componentInstance = componentRef.instance as CountriesComponent;
           componentInstance.message = 'Hello to Countries';
@@ -56,5 +59,13 @@ export class MastersComponent {
       }, 100);
     }
 
+  }
+
+  onCloseClick(clickedTab: any) {
+    clickedTab.viewContainerRef.remove();
+    this.tabs.splice(this.tabs.indexOf(clickedTab), 1);
+    if (this.tabs.length > 0) {
+      this.activeItem = this.tabs[0].itemName;
+    }
   }
 }

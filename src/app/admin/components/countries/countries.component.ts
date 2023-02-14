@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class CountriesComponent {
   message: string | any = null;
+
+  ngOnDestroy() {
+    console.log('ngOnDestroy');    
+  }
 }
