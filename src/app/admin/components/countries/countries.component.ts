@@ -37,6 +37,10 @@ export class CountriesComponent implements OnInit {
   @ViewChild("defaultTextBox_New") defaultTextBox_New: ElementRef | any = null;
   @ViewChild("defaultTextBox_Edit") defaultTextBox_Edit: ElementRef | any = null;
 
+  // Sorting
+  sortBy: string = 'countryName';
+  sortOrder: string = 'ASC'; // ASC | DESC
+
   //Constructor
   constructor(private countriesService: CountriesService, private formBuilder: FormBuilder) {
   }
