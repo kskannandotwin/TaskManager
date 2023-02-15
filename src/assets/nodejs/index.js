@@ -11,6 +11,10 @@ var helpers = require("./helpers");
 var users = require("./projects");
 var clientlocations = require("./clientlocations");
 var countries = require("./countries");
+var taskpriorities = require("./taskpriorities");
+var taskstatuses = require("./taskstatuses");
+
+
 
 app.listen(9090, startup);
 function startup() {
@@ -85,6 +89,8 @@ app.get(
   users.getProjectByProjectID
 );
 
+
+
 //GET api/clientlocations
 app.get(
   "/api/clientlocations",
@@ -113,15 +119,135 @@ app.delete(
   clientlocations.deleteClientLocations
 );
 
+//GET /api/clientlocations/searchbyclientlocationid/:ClientLocationID
+app.get(
+  "/api/clientlocations/searchbyclientlocationid/:ClientLocationID",
+  [authenticateToken],
+  clientlocations.searchByClientLocationID
+);
+
+
+
 //GET api/countries
 app.get("/api/countries", countries.getCountries);
+
+//POST api/countries
+app.post(
+  "/api/countries",
+  [authenticateToken],
+  countries.postCountries
+);
+
+//PUT api/countries
+app.put(
+  "/api/countries",
+  [authenticateToken],
+  countries.putCountries
+);
+
+//DELETE api/countries
+app.delete(
+  "/api/countries",
+  [authenticateToken],
+  countries.deleteCountries
+);
+
+//GET api/countries/search/:searchby/:searchtext
+app.get(
+  "/api/countries/search/:searchby/:searchtext",
+  [authenticateToken],
+  countries.searchCountries
+);
+
+//GET /api/projects/searchbycountryid/:CountryID
+app.get(
+  "/api/countries/searchbycountryid/:CountryID",
+  [authenticateToken],
+  countries.searchByCountryID
+);
+
+
+
+//GET api/taskpriorities
+app.get(
+  "/api/taskpriorities",
+  [authenticateToken],
+  taskpriorities.getTaskPriorities
+);
+
+//POST api/taskpriorities
+app.post(
+  "/api/taskpriorities",
+  [authenticateToken],
+  taskpriorities.postTaskPriorities
+);
+
+//PUT api/taskpriorities
+app.put(
+  "/api/taskpriorities",
+  [authenticateToken],
+  taskpriorities.putTaskPriorities
+);
+
+//DELETE api/taskpriorities
+app.delete(
+  "/api/taskpriorities",
+  [authenticateToken],
+  taskpriorities.deleteTaskPriorities
+);
+
+//GET /api/taskpriorities/searchbytaskpriorityid/:TaskPriorityID
+app.get(
+  "/api/taskpriorities/searchbytaskpriorityid/:TaskPriorityID",
+  [authenticateToken],
+  taskpriorities.searchByTaskPriorityID
+);
+
+
+
+
+//GET api/taskstatuses
+app.get(
+  "/api/taskstatuses",
+  [authenticateToken],
+  taskstatuses.getTaskStatuses
+);
+
+//POST api/taskstatuses
+app.post(
+  "/api/taskstatuses",
+  [authenticateToken],
+  taskstatuses.postTaskStatuses
+);
+
+//PUT api/taskstatuses
+app.put(
+  "/api/taskstatuses",
+  [authenticateToken],
+  taskstatuses.putTaskStatuses
+);
+
+//DELETE api/taskstatuses
+app.delete(
+  "/api/taskstatuses",
+  [authenticateToken],
+  taskstatuses.deleteTaskStatuses
+);
+
+//GET /api/taskstatuses/searchbytaskstatusid/:TaskStatusID
+app.get(
+  "/api/taskstatuses/searchbytaskstatusid/:TaskStatusID",
+  [authenticateToken],
+  taskstatuses.searchByTaskStatusID
+);
+
+
 
 //post api/routerlogger
 app.post("/api/routerlogger", function (req, res) {
   console.log(req.body);
   res.end();
 });
-
 
 //POST /register
 app.post("/register", function (req, res) {
@@ -133,8 +259,8 @@ app.post("/register", function (req, res) {
       UserName: req.body.email,
       Email: req.body.email,
       Password: req.body.password,
-      FirstName: req.body.firstName,
-      LastName: req.body.lastName,
+      FirstName: req.body.personName.firstName,
+      LastName: req.body.personName.lastName,
       Role: "Employee",
     };
     newuser.password = "";
