@@ -16,6 +16,7 @@ export class LoginService {
   constructor(private httpBackend: HttpBackend, private jwtHelperService: JwtHelperService) { }
 
   currentUserName: any = null;
+  currentUserRole: string | any = null;
 
   public Login(loginViewModel: LoginViewModel): Observable<any> {
     this.httpClient = new HttpClient(this.httpBackend);
@@ -23,6 +24,7 @@ export class LoginService {
       .pipe(map(response => {
         if (response) {
           this.currentUserName = response.body.userName;
+          this.currentUserRole = response.body.role;
           sessionStorage['currentUser'] = JSON.stringify(response.body);
           sessionStorage['XSRFRequestToken'] = response.headers.get("XSRF-REQUEST-TOKEN")
         }
