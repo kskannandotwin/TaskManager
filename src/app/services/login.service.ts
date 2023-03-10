@@ -32,6 +32,14 @@ export class LoginService {
       }));
   }
 
+  public detectIfAlreadyLoggedIn() {
+    if(this.jwtHelperService.isTokenExpired() == false) {
+      var currentUser = JSON.parse(sessionStorage['currentUser']);
+      this.currentUserName = currentUser.userName;
+      this.currentUserRole = currentUser.role;
+    }
+  }
+
   public Register(SignUpViewModel: SignUpViewModel): Observable<any> {
     this.httpClient = new HttpClient(this.httpBackend);
     return this.httpClient.post<any>("http://localhost:9090/register", SignUpViewModel, { responseType: "json", observe: "response" })

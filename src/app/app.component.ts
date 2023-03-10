@@ -16,6 +16,8 @@ export class AppComponent {
   }
 
   ngOnInit() {
+    this.loginService.detectIfAlreadyLoggedIn();
+    
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         let userName = (this.loginService.currentUserName) ? this.loginService.currentUserName : 'ananymous';
