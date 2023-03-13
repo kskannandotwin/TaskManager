@@ -310,6 +310,21 @@ app.get("/api/getUserByEmail/:Email", function (req, res) {
   }
 });
 
+//GET /api/getallemployees
+app.get("/api/getallemployees", function (req, res) {
+  console.log(req.method, req.url);
+  users = JSON.parse(fs.readFileSync(jsonfile, "utf8")).users;
+  users = users.filter((us) => {
+    return us["Role"] == "Employee";
+  });
+  console.log("Response: ", users);
+  if (users) {
+    res.send(helpers.toCamel(users));
+  } else {
+    res.send(users);
+  }
+});
+
 //POST /authenticate
 app.post("/authenticate", function (req, res) {
   console.log(req.method, req.url);

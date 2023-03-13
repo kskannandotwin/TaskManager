@@ -33,7 +33,7 @@ export class LoginService {
   }
 
   public detectIfAlreadyLoggedIn() {
-    if(this.jwtHelperService.isTokenExpired() == false) {
+    if (this.jwtHelperService.isTokenExpired() == false) {
       var currentUser = JSON.parse(sessionStorage['currentUser']);
       this.currentUserName = currentUser.userName;
       this.currentUserRole = currentUser.role;
@@ -70,6 +70,11 @@ export class LoginService {
     } else {
       return true; // token is valid
     }
+  }
+
+  public getAllEmployees(): Observable<any> {
+    this.httpClient = new HttpClient(this.httpBackend);
+    return this.httpClient.get<any>("http://localhost:9090/api/getallemployees", { responseType: "json" });
   }
 
 }
