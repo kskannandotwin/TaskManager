@@ -13,7 +13,7 @@ var clientlocations = require("./clientlocations");
 var countries = require("./countries");
 var taskpriorities = require("./taskpriorities");
 var taskstatuses = require("./taskstatuses");
-
+var tasks = require("./tasks");
 
 
 app.listen(9090, startup);
@@ -325,6 +325,7 @@ app.get("/api/getallemployees", function (req, res) {
   }
 });
 
+
 //POST /authenticate
 app.post("/authenticate", function (req, res) {
   console.log(req.method, req.url);
@@ -354,3 +355,38 @@ app.post("/authenticate", function (req, res) {
     res.send({ message: "Username or password is incorrect" });
   }
 });
+
+//GET api/tasks
+app.get(
+  "/api/tasks",
+  [authenticateToken],
+  tasks.gettasks
+);
+
+//POST api/createtask
+app.post(
+  "/api/createtask",
+  [authenticateToken],
+  tasks.posttasks
+);
+
+//PUT api/tasks
+app.put(
+  "/api/tasks",
+  [authenticateToken],
+  tasks.puttasks
+);
+
+//GET api/tasks/searchbytaskid/:taskID
+app.get(
+  "/api/tasks/searchbytaskid/:taskID",
+  [authenticateToken],
+  tasks.searchBytaskID
+);
+
+//GET api/updatetaskstatus
+app.put(
+  "/api/updatetaskstatus",
+  [authenticateToken],
+  tasks.updateTaskStatus
+);

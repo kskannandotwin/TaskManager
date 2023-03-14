@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { GroupedTask } from '../models/grouped-task';
 import { Task } from '../models/task';
 
 @Injectable({
@@ -9,6 +10,10 @@ import { Task } from '../models/task';
 export class TasksService {
 
   constructor(private httpClient: HttpClient) { }
+
+  getTasks(): Observable<GroupedTask[]> {
+    return this.httpClient.get<GroupedTask[]>("http://localhost:9090/api/tasks", { responseType: "json" });
+  }
 
   insertTask(newTask: Task): Observable<Task> {
     var user = JSON.parse(sessionStorage['currentUser']);
