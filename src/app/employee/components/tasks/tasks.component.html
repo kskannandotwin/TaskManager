@@ -2,6 +2,7 @@
 <a [routerLink]=" [ '/employee', 'createtask' ] " class="btn btn-primary">Create Task</a>
 
 <div class="row mt-1 mb-2">
+
     <div class="col-lg-6 mb-1" *ngFor="let taskGroup of taskGroups">
         <div class="card card-primary">
 
@@ -17,7 +18,9 @@
             </div>
 
             <div class="card-body">
+
                 <div class="card mb-1" *ngFor="let task of taskGroup.tasks; let i = index">
+
                     <div class="card-header">
                         #{{i + 1}} &nbsp;&nbsp; {{task.taskName}}
 
@@ -29,6 +32,7 @@
 
                     <div class="card-body">
                         <div>{{task.description}}</div>
+
                         <div>
                             <table class="table table-sm table-borderless">
                                 <tr>
@@ -41,6 +45,7 @@
                                         {{task.createdOnString}}
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <td>Assigned to:</td>
                                     <td>
@@ -48,6 +53,7 @@
                                         {{task.assignedToUser?.userName}}
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <td>Project:</td>
                                     <td>
@@ -86,6 +92,7 @@
                                 </tbody>
                             </table>
                         </div>
+
                     </div>
 
                     <div class="card-footer">
@@ -95,6 +102,7 @@
                                 <i class="fa fa-pencil"></i>
                                 Change Status
                             </a>
+
                             <a [routerLink]=" [ '/employee', 'edittask', task.taskID ] "
                                 class="btn btn-sm btn-outline-secondary"
                                 *ngIf="task.createdByUser?.userName == loginService.currentUserName">
@@ -104,7 +112,10 @@
                         </div>
                     </div>
                 </div>
+
             </div>
+
         </div>
     </div>
+
 </div>

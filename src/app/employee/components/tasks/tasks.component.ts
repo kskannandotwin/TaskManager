@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { GroupedTask } from 'src/app/models/grouped-task';
-import { LoginService } from 'src/app/services/login.service';
-import { TasksService } from 'src/app/services/tasks.service';
+import { TasksService } from '../../../services/tasks.service';
+import { LoginService } from '../../../services/login.service';
+import { GroupedTask } from '../../../models/grouped-task';
 
 @Component({
   selector: 'app-tasks',
@@ -9,11 +9,9 @@ import { TasksService } from 'src/app/services/tasks.service';
   styleUrls: ['./tasks.component.scss']
 })
 export class TasksComponent implements OnInit {
-
   taskGroups: GroupedTask[];
 
   constructor(private tasksService: TasksService, public loginService: LoginService) {
-
   }
 
   ngOnInit() {
@@ -22,9 +20,9 @@ export class TasksComponent implements OnInit {
     });
   }
 
-  // get background color based on task status
+  /* Get background color based on task status */
   getTaskGroupBgCssClass(taskStatusName: any): string {
-    let className: any;
+    var className: any;
     switch (taskStatusName) {
       case "Holding": className = "bg-secondary text-white"; break;
       case "Prioritized": className = "bg-primary text-white"; break;
@@ -35,9 +33,9 @@ export class TasksComponent implements OnInit {
     return className;
   }
 
-  // get background color based on task priority
+  /* Get background color based on task priority */
   getTaskPriorityBadgeCssClass(taskPriorityName: any): string {
-    let className: any;
+    var className: any;
     switch (taskPriorityName) {
       case "Urgent": className = "badge-danger"; break;
       case "Normal": className = "badge-primary"; break;
@@ -47,14 +45,15 @@ export class TasksComponent implements OnInit {
     return className;
   }
 
-  // get text color based on task status
+  /* Get text color based on task status */
   getTaskGroupTextCssClass(taskStatusName: any): string {
-    let className: any;
+    var className: any;
     switch (taskStatusName) {
       case "Holding": className = "text-secondary"; break;
       case "Prioritized": className = "text-primary"; break;
       case "Started": className = "text-info"; break;
-      case "Reverted": className = "text-red"; break;
+      case "Finished": className = "text-success"; break;
+      case "Reverted": className = "text-danger"; break;
     }
     return className;
   }
