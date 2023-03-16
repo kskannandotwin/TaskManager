@@ -934,46 +934,24 @@
         {
             "taskStatusDetailID": 1,
             "taskID": 1,
-            "userID": 2,
             "taskStatusID": 1,
-            "statusUpdationDateTime": "2022-8-24",
-            "description": "Task Created"
-        },        
-        {
-            "taskStatusDetailID": null,
-            "taskID": 2,
-            "taskStatusID": 1,
-            "statusUpdationDateTime": "2023-3-14",
+            "statusUpdationDateTime": "2023-3-16",
             "description": "Task Created"
         }
     ],
     "tasks": [
         {
             "taskID": 1,
-            "taskName": "Test task",
-            "description": "dfgdfg",
-            "projectID": "2",
-            "assignedTo": 3,
-            "taskPriorityID": "4",
-            "createdBy": 2,
-            "CurrentStatus": "Holding",
-            "createdOn": "2022-8-24",
-            "lastUpdatedOn": "2022-8-24",
-            "createdOnString": "2022-8-24",
-            "lastUpdatedOnString": "2022-8-24"
-        },
-        {
-            "taskID": 2,
-            "taskName": "Kannan Task",
-            "description": "This is kannan task",
-            "projectID": "2",
+            "taskName": "Kannan Task One",
+            "description": "Test task",
+            "projectID": "1",
             "assignedTo": null,
             "taskPriorityID": "1",
             "CurrentStatus": "Holding",
-            "createdOn": "2023-3-14",
-            "lastUpdatedOn": "2023-3-14",
-            "createdOnString": "2023-3-14",
-            "lastUpdatedOnString": "2023-3-14",
+            "createdOn": "2023-3-16",
+            "lastUpdatedOn": "2023-3-16",
+            "createdOnString": "2023-3-16",
+            "lastUpdatedOnString": "2023-3-16",
             "currentTaskStatusID": 1
         }
     ]
